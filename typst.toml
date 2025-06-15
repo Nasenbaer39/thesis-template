@@ -1,0 +1,11 @@
+[package]
+name = "thesis-template"
+version = "0.1.0"
+entrypoint = "lib.typ"
+authors = ["Ben Dierks"]
+license = "MIT-0"
+description = "TODO"
+
+[template]
+path = "template"
+entrypoint = "main.typ"
