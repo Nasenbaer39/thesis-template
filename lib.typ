@@ -72,6 +72,24 @@
   set text(font: body-font, size: body-size)
   show math.equation: set text(font: math-font, fallback: false)
 
+
+  /*------[Fancy Hydra-Header]------*/
+
+  let custom-header(title, dir, it) = {
+    set text(style: "oblique")
+    stack(
+      dir: dir,
+      [
+        *#title #numbering(it.numbering, ..counter(heading).at(it.location()))*
+        #h(7pt)
+        #it.body
+      ],
+      [#h(7pt)|#h(7pt)],
+      counter(page).display()
+    )
+    v(5pt)
+  }
+
   set page(
     paper: "a4",
     margin: (

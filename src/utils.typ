@@ -1,21 +1,5 @@
 #import "@preview/drafting:0.2.2": *
-
-/*------[Fancy Hydra-Header]------*/
-
-#let custom-header(title, dir, it) = {
-  set text(style: "oblique")
-  stack(
-    dir: dir,
-    [
-      *#title #numbering(it.numbering, ..counter(heading).at(it.location()))*
-      #h(7pt)
-      #it.body
-    ],
-    [#h(7pt)|#h(7pt)],
-    counter(page).display()
-  )
-  v(5pt)
-}
+#import "@preview/catppuccin:1.0.0": latte
 
 
 /*------[Signature Line]------*/
@@ -68,11 +52,11 @@
 /*------[Helpers to create Subfigures]------*/
 
 // Example:
-// #subfigures(
-//   caption: [mainfigure caption],
-//   [#subfigure(image("first_subfigure.content"), caption: [first subfigure caption]) <first subfigure reference>],
-//   [#subfigure(image("second_subfigure.content"), caption: [second subfigure caption]) <second subfigure reference>],
-//   ...add more subfigures below
+// #nested-figure(
+//   caption: [main-figure caption],
+//   [#subfigure(image("first_subfigure.content"), caption: [first sub-figure caption]) <first-sub-figure-reference>],
+//   [#subfigure(image("second_subfigure.content"), caption: [second sub-figure caption]) <second-sub-figure-reference>],
+//   ...add more sub-figures below
 // )
 
 #let subfigure = figure.with(kind: "subfigure")
@@ -88,3 +72,7 @@
     caption: caption
   )
 }
+
+/*------[Shorthand to color math symbols]------*/
+
+#let col-math(x, color: latte.colors.green.rgb) = text(fill: color)[$#x$]
