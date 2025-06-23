@@ -61,14 +61,18 @@
 
 #let subfigure = figure.with(kind: "subfigure")
 
-#let nested-figure(caption: [], spacing: 2em, ..args) = {
+#let nested-figure(caption: [], multi-row: false, spacing: 2em, ..args) = {
   figure({
     set align(bottom)
-    stack(
-      dir: ltr,
-      spacing: spacing,
-      ..args,
-    )},
+    if multi-row {
+      grid(columns: 2, gutter: 10pt, ..args,)
+    } else {
+      stack(
+        dir: ltr,
+        spacing: spacing,
+        ..args,
+      )
+    }},
     caption: caption
   )
 }
