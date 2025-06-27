@@ -13,6 +13,7 @@
   title: "Your Title",
   author: "Your Name",
   date: datetime.today(),
+  advisor: "Advisor of your thesis",
   first-reviewer: "First Reviewer",
   second-reviewer: "Second Reviewer",
   style: "style.csl",
@@ -59,6 +60,7 @@
     title: title,
     author: author,
     date: date,
+    advisor: advisor,
     first-reviewer: first-reviewer,
     second-reviewer: second-reviewer,
     body-font: body-font,
@@ -167,7 +169,8 @@
     counter(figure.where(kind: "subfigure")).update(0)
     numbering("1.1", counter(heading.where(level: 1)).get().first(), n)
   })
-
+  
+  show figure.where(kind: "code"): set figure(supplement: [Algorithm])
   show figure.where(kind: "subfigure"): set figure(supplement: [], numbering: "(a)", outlined: false)
 
   show figure.caption: it => {
@@ -281,7 +284,7 @@
         [Fig. ] + link(e.location(), numbering(q.numbering, ..counter(figure.where(kind: q.kind)).at(q.location())) +
         numbering("a", ..counter(figure.where(kind: "subfigure")).at(e.location())))
       } else {
-        [Fig. ] + link(e.location(), numbering(e.numbering, ..counter(figure.where(kind: e.kind)).at(e.location())))
+        if e.kind == "code" [Alg. ] else [Fig. ] + link(e.location(), numbering(e.numbering, ..counter(figure.where(kind: e.kind)).at(e.location())))
       }
     // color equation numbering, but not parentheses
     } else if e.func() == math.equation {
