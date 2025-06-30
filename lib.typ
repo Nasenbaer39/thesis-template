@@ -1,29 +1,12 @@
 #import "@preview/hydra:0.6.1": hydra
 #import "@preview/outrageous:0.4.0" as outrageous
 
-#import "src/frontmatter.typ": *
 #import "src/utils.typ": *
 
-#let thesis(
-  university: "Universität des Saarlandes",
-  place: "Saarbrücken",
-  faculty: "Your Faculty",
-  field: "Your Field",
-  type: "Thesis Type",
-  title: "Your Title",
-  author: "Your Name",
-  date: datetime.today(),
-  advisor: "Advisor of your thesis",
-  first-reviewer: "First Reviewer",
-  second-reviewer: "Second Reviewer",
+#let thesis( 
   style: "style.csl",
-  frontmatter: (
-    abstract: none,
-    acknowledgements: none,
-  ),
-  backmatter: (
-    bib: none,
-  ),
+  frontmatter: none,
+  backmatter: none,
   body,
 ) = {
 
@@ -43,30 +26,10 @@
 
   /*------[General Settings]------*/
 
-  set document(title: title, author: author, date: date)
+  // set document(title: title, author: author, date: date)
   set bibliography(style: "style.csl")
 
   let in-body = state("in-body", false)
-
-    //===========================//
-   //-------- Titlepage --------//
-  //===========================//
-
-  titlepage(
-    university: university,
-    faculty: faculty,
-    field: field,
-    type: type,
-    title: title,
-    author: author,
-    date: date,
-    advisor: advisor,
-    first-reviewer: first-reviewer,
-    second-reviewer: second-reviewer,
-    body-font: body-font,
-    heading-font: heading-font,
-    accent-color: accent-color,
-  )
 
   /*------[Page Layout]------*/
 
@@ -205,12 +168,6 @@
     })
   }
 
-  declaration-of-authorship(
-    place: place,
-    date: date,
-    name: author,
-  )
-
 
     //===========================//
    //------ Front Matter -------//
@@ -218,17 +175,7 @@
 
   set page(numbering: "i")
 
-  counter(page).update(1)
-
-  // Add abstract if present
-  if frontmatter.abstract != none {
-    abstract()[#frontmatter.abstract]
-  }
-
-  // Add acknowledgements if present
-  if frontmatter.acknowledgements != none {
-    acknowledgements()[#frontmatter.acknowledgements]
-  }
+  frontmatter
 
   /*------[Outline Styling]------*/
 
@@ -329,7 +276,5 @@
   // remove custom header
   set page(header: [])
 
-  if backmatter.bib != none {
-    backmatter.bib
-  }
+  backmatter 
 }

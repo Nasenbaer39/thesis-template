@@ -9,17 +9,14 @@
   advisor: "",
   first-reviewer: "",
   second-reviewer: "",
-  body-font: none,
   heading-font: none,
   accent-color: red,
 ) = {
+  set page(margin: (left: 40mm, right: 40mm, top: 50mm, bottom: 50mm))
   set align(center + horizon)
   set par(leading: 15pt)
-  set text(font: body-font)
-  page(
-    margin: (left: 40mm, right: 40mm, top: 50mm, bottom: 50mm),
-    numbering: none,
-  )[
+  
+  [
     #text(fill: accent-color, 20pt)[#university]\
     #text(weight: "semibold", 15pt)[
       Faculty of #faculty\
