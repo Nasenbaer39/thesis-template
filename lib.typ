@@ -113,8 +113,10 @@
         })))
       } else {
         align(right, emph(hydra(2, display: (_, it) => {
-          custom-header("Section", ltr, it)   // Section title on the right of odd pages
-        })))
+            custom-header("Section", ltr, it)   // Section title on the right of odd pages
+          }, 
+          skip-starting: false))
+        )
       }
     },
     footer: []
@@ -166,12 +168,14 @@
   /*------[Figure Style]------*/
 
   set figure(numbering: n => {
-    counter(figure.where(kind: "subfigure")).update(0)
-    numbering("1.1", counter(heading.where(level: 1)).get().first(), n)
-  })
+      counter(figure.where(kind: "subfigure")).update(0)
+      numbering("1.1", counter(heading.where(level: 1)).get().first(), n)
+    },
+    placement: auto
+  )
   
   show figure.where(kind: "code"): set figure(supplement: [Algorithm])
-  show figure.where(kind: "subfigure"): set figure(supplement: [], numbering: "(a)", outlined: false)
+  show figure.where(kind: "subfigure"): set figure(supplement: [], numbering: "(a)", outlined: false, placement: none)
 
   show figure.caption: it => {
     set text(font: (caption-font), size: caption-size)
