@@ -204,7 +204,7 @@
         emph(it.body)
 
         // add spacing between mainfigure caption and subfigure
-        if it.kind == "subfigure" {v(1em)}
+        if it.kind == "subfigure" {v(0.75em)}
       }
     })
   }
@@ -285,10 +285,10 @@
       if e.kind == "subfigure" {
         let q = query(figure.where(outlined: true).before(it.target)).last()
         // display mainfigure and subfigure counter after each other if subfigure is referenced
-        [Fig. ] + link(e.location(), numbering(q.numbering, ..counter(figure.where(kind: q.kind)).at(q.location())) +
+        [Fig.~] + link(e.location(), numbering(q.numbering, ..counter(figure.where(kind: q.kind)).at(q.location())) +
         numbering("a", ..counter(figure.where(kind: "subfigure")).at(e.location())))
       } else {
-        if e.kind == "code" [Alg. ] else [Fig. ] + link(e.location(), numbering(e.numbering, ..counter(figure.where(kind: e.kind)).at(e.location())))
+        if e.kind == "code" [Alg.~] else [Fig.~] + link(e.location(), numbering(e.numbering, ..counter(figure.where(kind: e.kind)).at(e.location())))
       }
     // color equation numbering, but not parentheses
     } else if e.func() == math.equation {
@@ -296,7 +296,7 @@
       it
     // reference l1 headers has "Chapter" and all others as "Section"
     } else if e.func() == heading {
-      if e.level == 1 [Chapter ] else [Section ]
+      if e.level == 1 [Chapter~] else [Section~]
       link(e.location(), numbering(e.numbering, ..counter(heading).at(e.location())))
     } else {
       it
@@ -307,11 +307,12 @@
 
   show heading.where(level: 1): it => {
     // Reset figure and equation numbering on every chapter start
-    for kind in (image, table, raw) {
+    for kind in (image, table, raw, "code") {
       counter(figure.where(kind: kind)).update(0)
-      counter(figure).update(0)
-      counter(math.equation).update(0)
     }
+
+    counter(figure).update(0)
+    counter(math.equation).update(0)
 
     // Start chapter headings on a new page
     state("content.switch").update(false)
