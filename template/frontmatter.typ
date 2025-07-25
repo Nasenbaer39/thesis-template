@@ -43,7 +43,7 @@
 
   counter(page).update(1)
 
-  include "frontmatter/acknowledgements.typ"
+  include "frontmatter/acknowledgments.typ"
 
   pagebreak(weak: true, to: "odd")
 
