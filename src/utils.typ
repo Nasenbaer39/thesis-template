@@ -61,9 +61,10 @@
 
 #let subfigure = figure.with(kind: "subfigure")
 
-#let nested-figure(caption: [], multi-row: false, spacing: 2em, ..args) = {
+#let nested-figure(caption: [], multi-row: false, spacing: 2em, alignment: bottom, ..args) = {
   figure({
-    set align(bottom)
+    set align(alignment)
+    set figure.caption(position: alignment)
     if multi-row {
       grid(columns: 2, gutter: 10pt, ..args,)
     } else {
@@ -79,4 +80,4 @@
 
 /*------[Shorthand to color math symbols]------*/
 
-#let col-math(x, color: latte.colors.green.rgb) = text(fill: color)[$#x$]
+#let col-math(x, color: latte.colors.green.rgb) = text(fill: color)[#x]
