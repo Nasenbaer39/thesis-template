@@ -7,6 +7,9 @@
   style: "style.csl",
   frontmatter: none,
   backmatter: none,
+  title: "",
+  author: "",
+  date: datetime.today(),
   body,
 ) = {
 
@@ -26,7 +29,7 @@
 
   /*------[General Settings]------*/
 
-  // set document(title: title, author: author, date: date)
+  set document(title: title, author: author, date: date)
   set bibliography(style: "style.csl")
 
   let in-body = state("in-body", false)
