@@ -288,7 +288,7 @@
         [Fig.~] + link(e.location(), numbering(q.numbering, ..counter(figure.where(kind: q.kind)).at(q.location())) +
         numbering("a", ..counter(figure.where(kind: "subfigure")).at(e.location())))
       } else {
-        if e.kind == "code" [Alg.~] else [Fig.~] + link(e.location(), numbering(e.numbering, ..counter(figure.where(kind: e.kind)).at(e.location())))
+        if e.kind == "code" [Alg.~] else if e.kind == table [Tab.~] else [Fig.~] + link(e.location(), numbering(e.numbering, ..counter(figure.where(kind: e.kind)).at(e.location())))
       }
     // color equation numbering, but not parentheses
     } else if e.func() == math.equation {
