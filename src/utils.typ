@@ -40,6 +40,12 @@
   ]
 }
 
+#let comment(body, color: blue.darken(25%), sh: "") = {
+  math.attach(tl: sh)[]
+  inline-note(stroke: blue.darken(25%), par-break: false)[
+    #body
+  ]
+}
 
 /*------[Shorthand for Prose Citations]------*/
 
@@ -51,32 +57,8 @@
 
 /*------[Helpers to create Subfigures]------*/
 
-// Example:
-// #nested-figure(
-//   caption: [main-figure caption],
-//   [#subfigure(image("first_subfigure.content"), caption: [first sub-figure caption]) <first-sub-figure-reference>],
-//   [#subfigure(image("second_subfigure.content"), caption: [second sub-figure caption]) <second-sub-figure-reference>],
-//   ...add more sub-figures below
-// )
-
 #let subfigure = figure.with(kind: "subfigure")
 
-#let nested-figure(caption: [], multi-row: false, spacing: 2em, alignment: bottom, ..args) = {
-  figure({
-    set align(alignment)
-    set figure.caption(position: alignment)
-    if multi-row {
-      grid(columns: 2, gutter: 10pt, ..args,)
-    } else {
-      stack(
-        dir: ltr,
-        spacing: spacing,
-        ..args,
-      )
-    }},
-    caption: caption
-  )
-}
 
 /*------[Shorthand to color math symbols]------*/
 
