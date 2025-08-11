@@ -3,7 +3,7 @@
 
 #import "src/utils.typ": *
 
-#let thesis( 
+#let thesis(
   style: "style.csl",
   frontmatter: none,
   backmatter: none,
@@ -80,7 +80,7 @@
       } else {
         align(right, emph(hydra(2, display: (_, it) => {
             custom-header("Section", ltr, it)   // Section title on the right of odd pages
-          }, 
+          },
           skip-starting: false))
         )
       }
@@ -133,13 +133,13 @@
 
   /*------[Figure Style]------*/
 
-  set figure(numbering: n => {
+  set figure(numbering: (..n) => {
       counter(figure.where(kind: "subfigure")).update(0)
-      numbering("1.1", counter(heading.where(level: 1)).get().first(), n)
+      numbering("1.1", ..n)
     },
     placement: auto
   )
-  
+
   show figure.where(kind: "code"): set figure(supplement: [Algorithm])
   show figure.where(kind: "subfigure"): set figure(supplement: [], numbering: "(a)", outlined: false, placement: none)
 
@@ -165,7 +165,10 @@
           // don't display separator if it's a subfigure
           strong[#it.supplement #it.counter.display(it.numbering) ]
         } else {
-          strong[#it.supplement #it.counter.display(it.numbering)#it.separator]
+          strong[#it.supplement #numbering(it.numbering,
+            ..counter(heading.where(level: 1)).at(here()),
+            ..counter(figure.where(kind: it.kind)).at(here())
+          )#it.separator]
         }
         emph(it.body)
 
@@ -235,10 +238,21 @@
       if e.kind == "subfigure" {
         let q = query(figure.where(outlined: true).before(it.target)).last()
         // display mainfigure and subfigure counter after each other if subfigure is referenced
-        [Fig.~] + link(e.location(), numbering(q.numbering, ..counter(figure.where(kind: q.kind)).at(q.location())) +
-        numbering("a", ..counter(figure.where(kind: "subfigure")).at(e.location())))
+        [Fig.~] + link(
+          e.location(),
+          numbering(q.numbering,
+            ..counter(heading.where(level: 1)).at(e.location()),
+            ..counter(figure.where(kind: q.kind)).at(q.location())
+          ) +
+          numbering("a", ..counter(figure.where(kind: "subfigure")).at(e.location()))
+        )
       } else {
-        if e.kind == "code" [Alg.~] else if e.kind == table [Tab.~] else [Fig.~] + link(e.location(), numbering(e.numbering, ..counter(figure.where(kind: e.kind)).at(e.location())))
+        if e.kind == "code" [Alg.~] else if e.kind == table [Tab.~] else [Fig.~] + link(e.location(),
+          numbering(e.numbering,
+            ..counter(heading.where(level: 1)).at(e.location()),
+            ..counter(figure.where(kind: e.kind)).at(e.location())
+          )
+        )
       }
     // color equation numbering, but not parentheses
     } else if e.func() == math.equation {
@@ -284,5 +298,5 @@
   // remove custom header
   set page(header: [])
 
-  backmatter 
+  backmatter
 }
