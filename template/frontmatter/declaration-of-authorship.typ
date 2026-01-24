@@ -1,4 +1,20 @@
-#import "@local/thesis-template:0.1.0": signature
+#let signature(
+  place:"",
+  date:none,
+  name:"",
+) = {
+  grid(
+    columns: (auto, auto),
+    align(left)[
+      #place, #date.display("[month repr:long] [day], [year]")
+      #h(12pt)
+    ],
+    align(right)[
+      #move(dy: 8pt, line(length: 100%, stroke: (thickness: 0.5pt)))
+      #move(dy: 2pt,name)
+    ],
+  )
+}
 
 #let declaration-of-authorship(
   place: "",
