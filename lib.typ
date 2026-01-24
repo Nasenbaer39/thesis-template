@@ -3,10 +3,10 @@
 
 #import "src/utils.typ": *
 
-#let thesis( 
-  style: "style.csl",
+#let thesis(
   frontmatter: none,
   backmatter: none,
+  appendix: none,
   title: "",
   author: "",
   date: datetime.today(),
@@ -30,7 +30,6 @@
   /*------[General Settings]------*/
 
   set document(title: title, author: author, date: date)
-  set bibliography(style: "style.csl")
 
   let in-body = state("in-body", false)
 
@@ -80,7 +79,7 @@
       } else {
         align(right, emph(hydra(2, display: (_, it) => {
             custom-header("Section", ltr, it)   // Section title on the right of odd pages
-          }, 
+          },
           skip-starting: false))
         )
       }
@@ -139,7 +138,7 @@
     },
     placement: auto
   )
-  
+
   show figure.where(kind: "code"): set figure(supplement: [Algorithm])
   show figure.where(kind: "subfigure"): set figure(supplement: [], numbering: "(a)", outlined: false, placement: none)
 
@@ -235,10 +234,10 @@
       if e.kind == "subfigure" {
         let q = query(figure.where(outlined: true).before(it.target)).last()
         // display mainfigure and subfigure counter after each other if subfigure is referenced
-        [Fig.~] + link(e.location(), numbering(q.numbering, ..counter(figure.where(kind: q.kind)).at(q.location())) +
+        [Figure~] + link(e.location(), numbering(q.numbering, ..counter(figure.where(kind: q.kind)).at(q.location())) +
         numbering("a", ..counter(figure.where(kind: "subfigure")).at(e.location())))
       } else {
-        if e.kind == "code" [Alg.~] else if e.kind == table [Tab.~] else [Fig.~] + link(e.location(), numbering(e.numbering, ..counter(figure.where(kind: e.kind)).at(e.location())))
+        if e.kind == "code" [Algorithm~] else if e.kind == table [Table~] else [Figure~] + link(e.location(), numbering(e.numbering, ..counter(figure.where(kind: e.kind)).at(e.location())))
       }
     // color equation numbering, but not parentheses
     } else if e.func() == math.equation {
@@ -274,6 +273,15 @@
 
   body
 
+   //===========================//
+  //--------- Appendix --------//
+ //===========================//
+
+  set heading(numbering: "A.1")
+
+  counter(heading).update(0)
+
+  appendix
 
    //===========================//
   //------- Back Matter -------//
@@ -284,5 +292,5 @@
   // remove custom header
   set page(header: [])
 
-  backmatter 
+  backmatter
 }
