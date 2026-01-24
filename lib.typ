@@ -132,9 +132,9 @@
 
   /*------[Figure Style]------*/
 
-  set figure(numbering: n => {
+  set figure(numbering: (..n) => {
       counter(figure.where(kind: "subfigure")).update(0)
-      numbering("1.1", counter(heading.where(level: 1)).get().first(), n)
+      numbering("1.1", ..n)
     },
     placement: auto
   )
@@ -164,7 +164,10 @@
           // don't display separator if it's a subfigure
           strong[#it.supplement #it.counter.display(it.numbering) ]
         } else {
-          strong[#it.supplement #it.counter.display(it.numbering)#it.separator]
+          strong[#it.supplement #numbering(it.numbering,
+            ..counter(heading.where(level: 1)).at(here()),
+            ..counter(figure.where(kind: it.kind)).at(here())
+          )#it.separator]
         }
         emph(it.body)
 
@@ -234,10 +237,21 @@
       if e.kind == "subfigure" {
         let q = query(figure.where(outlined: true).before(it.target)).last()
         // display mainfigure and subfigure counter after each other if subfigure is referenced
-        [Figure~] + link(e.location(), numbering(q.numbering, ..counter(figure.where(kind: q.kind)).at(q.location())) +
-        numbering("a", ..counter(figure.where(kind: "subfigure")).at(e.location())))
+        [Figure.~] + link(
+          e.location(),
+          numbering(q.numbering,
+            ..counter(heading.where(level: 1)).at(e.location()),
+            ..counter(figure.where(kind: q.kind)).at(q.location())
+          ) +
+          numbering("a", ..counter(figure.where(kind: "subfigure")).at(e.location()))
+        )
       } else {
-        if e.kind == "code" [Algorithm~] else if e.kind == table [Table~] else [Figure~] + link(e.location(), numbering(e.numbering, ..counter(figure.where(kind: e.kind)).at(e.location())))
+        if e.kind == "code" [Algorithm.~] else if e.kind == table [Table.~] else [Figure.~] + link(e.location(),
+          numbering(e.numbering,
+            ..counter(heading.where(level: 1)).at(e.location()),
+            ..counter(figure.where(kind: e.kind)).at(e.location())
+          )
+        )
       }
     // color equation numbering, but not parentheses
     } else if e.func() == math.equation {
