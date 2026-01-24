@@ -1,30 +1,36 @@
 #import "@local/thesis-template:0.1.0": *
 #import "frontmatter.typ": *
+#import "backmatter.typ": *
 
-#let author = "Ben Dierks"
-#let title = "Brief Template Usage Guide"
+#let author = "Your Name"
+#let title = "Your Thesis Title"
 #let date = datetime.today()
 
-#show: thesis.with( 
+#show: thesis.with(
   frontmatter: frontmatter(
-    university: "Universität des Saarlandes",
-    faculty: "Creative Writing",
-    field: "Typstology",
-    type: "Holy Scripture",
+    university: "Your University",
+    faculty: "Your Faculty",
+    field: "Your Program of Study",
+    type: "Thesis Type",
     title: title,
-    place: "Saarbrücken",
+    city: "Your City",
     author: author,
     date: date,
-    first-reviewer: "The Council",
-    second-reviewer: "Committee for Good Style",
+    advisor: "Your Advisor",
+    first-reviewer: "Your First Reviewer",
+    second-reviewer: "Your Second Reviewer",
   ),
   author: author,
   title: title,
   date: date,
-  backmatter: [
-    #note-outline()
-    #bibliography("works.bib")
+  appendix: [
+    // Optional content for the appendix
   ],
+  backmatter: backmatter(
+    bibfile: "references.bib",
+    // The citation style can be set to one of Typst's built-in options or a custom .csl file
+    citation-style: "ieee"
+  )
 )
 
 = Usage Guide

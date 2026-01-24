@@ -9,11 +9,10 @@
   title: "",
   author: "",
   date: datetime.today(),
-  place: "",
+  city: "",
   advisor: "",
   first-reviewer: "",
   second-reviewer: "",
-  heading-font: "IBM Plex Serif",
   accent-color: red,
 ) = {
   titlepage(
@@ -27,7 +26,6 @@
     advisor: advisor,
     first-reviewer: first-reviewer,
     second-reviewer: second-reviewer,
-    heading-font: heading-font,
     accent-color: accent-color,
   )
 
@@ -38,7 +36,7 @@
     date: date,
     name: author,
   )
-  
+
   pagebreak(weak: true, to: "odd")
 
   counter(page).update(1)
