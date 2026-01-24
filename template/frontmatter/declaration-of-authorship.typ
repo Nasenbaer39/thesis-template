@@ -1,4 +1,4 @@
-#import "../utils.typ": signature
+#import "@local/thesis-template:0.1.0": signature
 
 #let declaration-of-authorship(
   place: "",
