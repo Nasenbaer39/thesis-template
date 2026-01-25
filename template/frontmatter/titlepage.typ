@@ -3,7 +3,6 @@
   faculty: "",
   field: "",
   type: "",
-  title: "",
   author: "",
   date: none,
   advisor: "",
@@ -28,7 +27,7 @@
 
       #v(30pt)
       #line(length:100%, stroke:(thickness: 0.5pt))
-      #text(font: "IBM Plex Serif", 17pt, tracking: 1pt)[#upper(title)]
+      #v(7pt)#title()#v(11pt)
       #line(length:100%, stroke:(thickness: 0.5pt))
 
 

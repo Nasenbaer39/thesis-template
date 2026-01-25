@@ -12,7 +12,6 @@
     faculty: "Your Faculty",
     field: "Your Program of Study",
     type: "Thesis Type",
-    title: title,
     city: "Your City",
     author: author,
     date: date,

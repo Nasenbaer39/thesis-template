@@ -31,6 +31,8 @@
 
   set document(title: title, author: author, date: date)
 
+  show title: it => text(font: "IBM Plex Serif", 17pt, weight: "regular", tracking: 1pt, upper(it))
+
   let in-body = state("in-body", false)
 
   /*------[Page Layout]------*/
