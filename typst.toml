@@ -3,9 +3,12 @@ name = "thesis-template"
 version = "0.1.0"
 entrypoint = "lib.typ"
 authors = ["Ben Dierks"]
-license = "MIT-0"
-description = "TODO"
+license = "MIT"
+description = "A flexible template for final theseses, term papers and similar documents"
+keywords = ["thesis"]
+categories = ["paper", "thesis", "report"]
 
 [template]
 path = "template"
 entrypoint = "main.typ"
+thumbnail = "TODO"
