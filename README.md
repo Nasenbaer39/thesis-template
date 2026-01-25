@@ -30,7 +30,9 @@ This template uses the following selection of fonts:
 - [IBM Plex Sans](https://fonts.google.com/specimen/IBM+Plex+Sans)
 - [STIX Two Math](https://online-fonts.com/fonts/stix-two-math)
 
-If you use this template locally, you can install the fonts on your system via the links above. In case you're using the Typst web app, all fonts are available out of the box.
+Because only local usage of this template is possible right now, these fonts have to be installed on your system, which can be done via the links above.
+
+<!--If you use this template locally, you can install the fonts on your system via the links above. In case you're using the Typst web app, all fonts are available out of the box.-->
 
 ## Usage
 
