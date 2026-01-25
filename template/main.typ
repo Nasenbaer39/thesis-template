@@ -26,9 +26,9 @@
     // Optional content for the appendix
   ],
   backmatter: backmatter(
-    bibfile: "references.bib",
+    bibliography:  bibliography("references.bib"),
     // The citation style can be set to one of Typst's built-in options or a custom .csl file
-    citation-style: "ieee"
+    bib-style: "ieee"
   )
 )
 

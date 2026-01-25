@@ -1,7 +1,9 @@
+#let std-bibliography = bibliography
+
 #let backmatter(
-  citation-style: "",
-  bibfile: "references.bib"
+  bibliography: [],
+  bib-style: "",
 ) = {
-  set bibliography(style: citation-style)
-  bibliography(bibfile)
+  set std-bibliography(style: bib-style)
+  std-bibliography
 }
