@@ -4,12 +4,12 @@ A [Typst](https://typst.app/) template for final theseses, term papers and simil
 
 ## Getting Started
 
-As this template is not available as an official Typst package (yet) the recommended way to use it, is to manually install it into your [typst data directory](https://github.com/typst/packages/tree/main?tab=readme-ov-file#local-packages) under the local name space. To do so, copy the contents of this repository to `{data-dir}/typst/packages/local/council-thesis/0.1.0`.
+As this template is not available as an official Typst package (yet) the recommended way to use it, is to manually install it into your [typst data directory](https://github.com/typst/packages/tree/main?tab=readme-ov-file#local-packages) under the local name space. To do so, copy the contents of this repository to `{data-dir}/typst/packages/local/thesis-template/0.1.0`.
 
 Afterwards, you can use the CLI to initialize a project with a default configuration using the following command:
 
 ```
-typst init @local/council-thesis my-thesis
+typst init @local/thesis-template my-thesis
 ```
 
 <!--You can use this template in the Typst web editor by clicking "Start from Template" on the dashboard and searching for `council-thesis-template`.
