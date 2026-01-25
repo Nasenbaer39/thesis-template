@@ -1,5 +1,6 @@
 #import "frontmatter/titlepage.typ": *
 #import "frontmatter/declaration-of-authorship.typ": *
+#import "frontmatter/outline.typ": *
 
 #let frontmatter(
   university: "",
@@ -29,15 +30,11 @@
     accent-color: accent-color,
   )
 
-  pagebreak(weak: true, to: "odd")
-
   declaration-of-authorship(
     place: place,
     date: date,
     name: author,
   )
-
-  pagebreak(weak: true, to: "odd")
 
   counter(page).update(1)
 
@@ -47,13 +44,11 @@
     #abstract
   ]
 
-  pagebreak(weak: true, to: "odd")
-
   [
     = Acknowledgments
 
     #acknowledgments
   ]
 
-  pagebreak(weak: true, to: "odd")
+  default-outline()
 }
