@@ -1,4 +1,4 @@
-#import "@local/thesis-template:0.1.0": *
+#import "@local/thesis-template:0.1.0": thesis, accent-color
 #import "frontmatter.typ": *
 #import "backmatter.typ": *
 
@@ -18,6 +18,7 @@
     advisor: "Your Advisor",
     first-reviewer: "Your First Reviewer",
     second-reviewer: "Your Second Reviewer",
+    accent-color: accent-color,
     abstract: [
       #lorem(150)
 

@@ -1,7 +1,13 @@
 #import "@preview/hydra:0.6.1": hydra
-#import "@preview/outrageous:0.4.0" as outrageous
 
+#import "src/frontmatter.typ": *
+#import "src/backmatter.typ": *
 #import "src/utils.typ": *
+
+
+/*--------[Accent Color]--------*/
+
+#let accent-color = rgb(165, 28, 48)
 
 #let thesis(
   frontmatter: none,
@@ -13,7 +19,8 @@
   body,
 ) = {
 
-  /*------[Fonts and Measurements]------*/
+
+  /*--------[Parameters]--------*/
 
   let body-font = "IBM Plex Sans"
   let heading-font = "IBM Plex Serif"
@@ -25,9 +32,9 @@
   let h3-size = body-size
   let h4-size = body-size
   let caption-size = 10pt
-  let accent-color = rgb(165, 28, 48)
 
-  /*------[General Settings]------*/
+
+  /*-----[General Settings]-----*/
 
   set document(title: title, author: author, date: date)
 
@@ -35,14 +42,12 @@
 
   let in-body = state("in-body", false)
 
-  /*------[Page Layout]------*/
-
   // Use measures to define text layout
   set text(font: body-font, size: body-size)
   show math.equation: set text(font: math-font, fallback: false)
 
 
-  /*------[Fancy Hydra-Header]------*/
+  /*----[Fancy Hydra-Header]----*/
 
   let custom-header(title, dir, it) = {
     set text(style: "oblique")
@@ -94,7 +99,8 @@
     justify: true,
   )
 
-  /*------[Heading Style]------*/
+
+  /*---------[Headings]---------*/
 
   show heading: it => {
     v(2.5em, weak: true)
@@ -132,7 +138,8 @@
   show heading.where(level: 4): it => {text(size: h4-size, weight: "semibold", it.body) + h(1em)}
   show heading.where(level: 5): it => {text(size: h4-size, weight: "semibold", it.body)}
 
-  /*------[Figure Style]------*/
+
+  /*----------[Figures]---------*/
 
   set figure(numbering: (..n) => {
       counter(figure.where(kind: "subfigure")).update(0)
@@ -180,42 +187,7 @@
   }
 
 
-    //===========================//
-   //------ Front Matter -------//
-  //===========================//
-
-  set page(numbering: "i")
-
-  frontmatter
-
-  /*------[Outline Styling]------*/
-
-  show outline.entry: outrageous.show-entry.with(
-    font: (body-font, auto),
-    vspace: (15pt, none),
-  )
-
-  show outline: it => {
-    set heading(outlined: true)
-    it
-    pagebreak(weak: true, to: "odd")
-  }
-
-  // Show outline
-  outline(depth: 3)
-
-
-   //===========================//
-  //------ Document Body ------//
- //===========================//
-
-  in-body.update(true)
-
-  set page(numbering: "1")
-  set heading(numbering: "1.1")
-
-  counter(page).update(1)
-  counter(heading).update(0)
+  /*---------[Equations]--------*/
 
   // Setup custom numbering of math functions: (chapter.number)
   set math.equation(number-align: bottom + end, supplement: none, numbering: num => {
@@ -223,8 +195,8 @@
       numbering("(1.1)", count, num)
   })
 
-  // Give links the accent color
-  show link: set text(accent-color)
+
+  /*--------[References]--------*/
 
   // Give different types of references a custom style
   show ref: it => {
@@ -268,7 +240,8 @@
     }
   }
 
-  /*------[Chapter Start]------*/
+
+  /*-------[Chapter Start]------*/
 
   show heading.where(level: 1): it => {
     // Reset figure and equation numbering on every chapter start
@@ -287,7 +260,36 @@
     it
   }
 
+
+   //===========================//
+  //------ Front Matter -------//
+ //===========================//
+
+  in-body.update(false)
+
+  set page(numbering: "i")
+  set page(header: [])
+
+  frontmatter
+
+
+   //===========================//
+  //----------- Body ----------//
+ //===========================//
+
+  in-body.update(true)
+
+  set page(numbering: "1")
+  set heading(numbering: "1.1")
+
+  counter(page).update(1)
+  counter(heading).update(0)
+
+  // Give links the accent color
+  show link: set text(accent-color)
+
   body
+
 
    //===========================//
   //--------- Appendix --------//
@@ -299,13 +301,13 @@
 
   appendix
 
+
    //===========================//
   //------- Back Matter -------//
  //===========================//
 
   in-body.update(false)
 
-  // remove custom header
   set page(header: [])
 
   backmatter
