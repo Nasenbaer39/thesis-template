@@ -8,11 +8,13 @@
   type: "",
   author: "",
   date: datetime.today(),
-  city: "",
+  place: "",
   advisor: "",
   first-reviewer: "",
   second-reviewer: "",
   accent-color: red,
+  abstract: [],
+  acknowledgments: [],
 ) = {
   titlepage(
     university: university,
@@ -39,11 +41,19 @@
 
   counter(page).update(1)
 
-  include "frontmatter/acknowledgments.typ"
+  [
+    = Abstract
+
+    #abstract
+  ]
 
   pagebreak(weak: true, to: "odd")
 
-  include "frontmatter/abstract.typ"
+  [
+    = Acknowledgments
+
+    #acknowledgments
+  ]
 
   pagebreak(weak: true, to: "odd")
 }

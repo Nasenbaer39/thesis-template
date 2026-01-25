@@ -12,12 +12,22 @@
     faculty: "Your Faculty",
     field: "Your Program of Study",
     type: "Thesis Type",
-    city: "Your City",
+    place: "Your City",
     author: author,
     date: date,
     advisor: "Your Advisor",
     first-reviewer: "Your First Reviewer",
     second-reviewer: "Your Second Reviewer",
+    abstract: [
+      #lorem(150)
+
+      #lorem(50)
+    ],
+    acknowledgments: [
+      #lorem(320)
+
+      #lorem(80)
+    ]
   ),
   author: author,
   title: title,
@@ -32,6 +42,10 @@
   )
 )
 
-= Usage Guide
+= Your First Chapter
 
-#include("chapters/tutorial.typ")
+#lorem(75)
+
+#lorem(130)
+
+#lorem(90)

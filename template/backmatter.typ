@@ -5,5 +5,5 @@
   bib-style: "",
 ) = {
   set std-bibliography(style: bib-style)
-  std-bibliography
+  bibliography
 }
