@@ -1,6 +1,6 @@
 #let std-bibliography = bibliography
 
-#let backmatter(
+#let default-backmatter(
   bibliography: [],
   bib-style: "",
 ) = {

@@ -2,18 +2,17 @@
 #import "frontmatter/declaration-of-authorship.typ": *
 #import "frontmatter/outline.typ": *
 
-#let frontmatter(
+#let default-frontmatter(
   university: "",
   faculty: "",
   field: "",
   type: "",
   author: "",
   date: datetime.today(),
-  place: "",
+  city: "",
   advisor: "",
   first-reviewer: "",
   second-reviewer: "",
-  accent-color: red,
   abstract: [],
   acknowledgments: [],
 ) = {
@@ -27,11 +26,10 @@
     advisor: advisor,
     first-reviewer: first-reviewer,
     second-reviewer: second-reviewer,
-    accent-color: accent-color,
   )
 
   declaration-of-authorship(
-    place: place,
+    city: city,
     date: date,
     name: author,
   )

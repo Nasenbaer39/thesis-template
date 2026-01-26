@@ -8,7 +8,6 @@
   advisor: "",
   first-reviewer: "",
   second-reviewer: "",
-  accent-color: red,
 ) = {
   set align(center + horizon)
   set par(leading: 15pt)
@@ -16,7 +15,7 @@
     margin: (left: 40mm, right: 40mm, top: 50mm, bottom: 50mm),
     numbering: none,
   )[
-    #text(fill: accent-color, 20pt)[#university]\
+    #text(fill: rgb(165, 28, 48), 20pt)[#university]\
     #text(weight: "semibold", 15pt)[
       Faculty of #faculty\
       Department of #field

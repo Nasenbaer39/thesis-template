@@ -2,10 +2,10 @@
 
 /*------[TODO Tools]------*/
 
-#let todo(body, color: yellow, title: "TODO") = {
+#let todo(body, color: yellow, label: "TODO") = {
   let shape = rect.with(inset: 0.75em, radius: 0.5em)
   inline-note(rect: shape, stroke: color, fill: color.lighten(60%))[
-    #text(weight: 700)[#title]: #body
+    #text(weight: 700)[#label]: #body
   ]
 }
 

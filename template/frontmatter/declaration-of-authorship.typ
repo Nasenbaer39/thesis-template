@@ -1,12 +1,12 @@
 #let signature(
-  place:"",
+  city:"",
   date:none,
   name:"",
 ) = {
   grid(
     columns: (auto, auto),
     align(left)[
-      #place, #date.display("[month repr:long] [day], [year]")
+      #city, #date.display("[month repr:long] [day], [year]")
       #h(12pt)
     ],
     align(right)[
@@ -17,7 +17,7 @@
 }
 
 #let declaration-of-authorship(
-  place: "",
+  city: "",
   date: none,
   name: "",
 ) = {
@@ -41,7 +41,7 @@
       I agree to make both versions of my thesis (with a passing grade) accessible to the public by having them added to the library of the Computer Science Department.
 
       #v(100pt)
-      #signature(place: place, date: date, name: name)
+      #signature(city: city, date: date, name: name)
     ]
   )
 

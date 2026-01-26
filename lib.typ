@@ -10,12 +10,12 @@
 #let accent-color = rgb(165, 28, 48)
 
 #let thesis(
-  frontmatter: none,
-  backmatter: none,
-  appendix: none,
   title: "",
   author: "",
   date: datetime.today(),
+  frontmatter: none,
+  appendix: none,
+  backmatter: none,
   body,
 ) = {
 
