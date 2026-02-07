@@ -198,13 +198,17 @@
 
   /*--------[References]--------*/
 
+  // color name and date in citations
+  show cite: it => {
+    show regex("[\d\p{L}\s.]+"): set text(accent-color)
+    it
+  }
+
   // Give different types of references a custom style
   show ref: it => {
     let e = it.element
 
-    // color name and date in citations
     if e == none {
-      show regex("[\d\p{L}\s.]+"): set text(accent-color)
       it
     // reference figures as "Fig. {chapter}.{figure}[subfigure]"
     } else if e.func() == figure {
