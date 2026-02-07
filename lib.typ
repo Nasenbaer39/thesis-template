@@ -211,7 +211,7 @@
       if e.kind == "subfigure" {
         let q = query(figure.where(outlined: true).before(it.target)).last()
         // display mainfigure and subfigure counter after each other if subfigure is referenced
-        [Figure.~] + link(
+        [Figure~] + link(
           e.location(),
           numbering(q.numbering,
             ..counter(heading.where(level: 1)).at(e.location()),
@@ -220,7 +220,7 @@
           numbering("a", ..counter(figure.where(kind: "subfigure")).at(e.location()))
         )
       } else {
-        if e.kind == "code" [Algorithm.~] else if e.kind == table [Table.~] else [Figure.~] + link(e.location(),
+        if e.kind == "code" [Algorithm~] else if e.kind == table [Table~] else [Figure~] + link(e.location(),
           numbering(e.numbering,
             ..counter(heading.where(level: 1)).at(e.location()),
             ..counter(figure.where(kind: e.kind)).at(e.location())
